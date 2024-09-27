@@ -1,15 +1,17 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\API\V1;
 
 use App\Http\Requests\StoreInvoiceRequest;
 use App\Http\Requests\UpdateInvoiceRequest;
 use App\Models\Invoice;
+use APP\Http\Controllers\Controller;
 
 class InvoiceController extends Controller
 {
     /**
      * Display a listing of the resource.
+     * 
      */
     public function index()
     {
