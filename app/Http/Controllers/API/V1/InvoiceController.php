@@ -4,18 +4,24 @@ namespace App\Http\Controllers\API\V1;
 
 use App\Http\Requests\StoreInvoiceRequest;
 use App\Http\Requests\UpdateInvoiceRequest;
+use App\Http\Resources\V1\InvoiceCollection;
+use App\Http\Resources\V1\InvoiceResource;
 use App\Models\Invoice;
+use Illuminate\Http\Request;
 use APP\Http\Controllers\Controller;
+use App\Http\Resources\V1\CustomerResource;
+use App\Http\Resources\V1\CustomerCollection;
 
 class InvoiceController extends Controller
 {
     /**
      * Display a listing of the resource.
      * 
+     * 
      */
     public function index()
     {
-        //
+        return new InvoiceCollection(Invoice::paginate());
     }
 
     /**
@@ -39,7 +45,7 @@ class InvoiceController extends Controller
      */
     public function show(Invoice $invoice)
     {
-        //
+        return new InvoiceResource($invoice);
     }
 
     /**
