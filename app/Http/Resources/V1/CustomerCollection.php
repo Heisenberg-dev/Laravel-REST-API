@@ -5,6 +5,7 @@ namespace App\Http\Resources\V1;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
+
 class CustomerCollection extends ResourceCollection
 {
     /**
