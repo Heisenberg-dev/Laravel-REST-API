@@ -1,21 +1,30 @@
 <?php
 
-namespace App\Services\V1;
+namespace App\Filters\V1;
 
 use Illuminate\Http\Request;
+use App\Filters\ApiFilter;
 
-class CustomerQuery {
+class InvoicesFilter  extends ApiFilter{
+
+    $table->integer('customer_id');
+    $table->integer('amount');
+    $table->string('status');
+    $table->dateTime('billed_date');
+    $table->dateTime('paid_date')->nullable();
     protected $allowedParams = [
-        'name' => ['eq'],
-        'type' => ['eq'],
-        'email' => ['eq'],
-        'city' => ['eq'],
-        'state' => ['eq'],
-        'postalCode' => ['eq', 'gt', 'lt']
+        'customer_id' => ['eq'],
+        'amount' => ['eq'],
+        'status' => ['eq'],
+        'billed_date' => ['eq'],
+        'paid_date' => ['eq'],
+        
     ];
 
     protected $columnMap = [
-        'postalCode' => 'postal_code'
+        'customer_id' => 'postal_code',
+        'billed_date' => 'postal_code',
+        'paid_date' => 'postal_code',
     ];
 
     protected $operatorMap = [

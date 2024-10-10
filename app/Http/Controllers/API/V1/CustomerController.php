@@ -5,7 +5,7 @@ namespace App\Http\Controllers\API\V1;
 use Illuminate\Http\Request;
 
 
-use App\services\V1\CustomerQuery;
+use App\Filters\V1\CustomerQuery;
 use App\Http\Requests\StoreCustomerRequest;
 use App\Http\Requests\UpdateCustomerRequest;
 use App\Models\Customer;
