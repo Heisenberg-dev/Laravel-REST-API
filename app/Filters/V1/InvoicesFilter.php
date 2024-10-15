@@ -7,24 +7,20 @@ use App\Filters\ApiFilter;
 
 class InvoicesFilter  extends ApiFilter{
 
-    $table->integer('customer_id');
-    $table->integer('amount');
-    $table->string('status');
-    $table->dateTime('billed_date');
-    $table->dateTime('paid_date')->nullable();
-    protected $allowedParams = [
+
+    protected $safeParams = [
         'customer_id' => ['eq'],
-        'amount' => ['eq'],
-        'status' => ['eq'],
-        'billed_date' => ['eq'],
-        'paid_date' => ['eq'],
+        'amount' => ['eq', 'lt', 'gt', 'lte', 'gte'],
+        'status' => ['eq', 'ne'],
+        'billed_date' => ['eq', 'lt', 'gt', 'lte', 'gte'],
+        'paid_date' => ['eq', 'lt', 'gt', 'lte', 'gte'],
         
     ];
 
     protected $columnMap = [
-        'customer_id' => 'postal_code',
-        'billed_date' => 'postal_code',
-        'paid_date' => 'postal_code',
+        'customerId' => 'customer_id',
+        'billedDate' => 'billed_date',
+        'paidDate' => 'paid_date',
     ];
 
     protected $operatorMap = [
@@ -56,4 +52,6 @@ class InvoicesFilter  extends ApiFilter{
 
         return $eloQuery;
     }
+
+    
 }
