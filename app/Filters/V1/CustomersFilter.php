@@ -6,9 +6,9 @@ use Illuminate\Http\Request;
 use App\Filters\ApiFilter;
 
 
-class CustomersFilter  extends ApiFilter{
+class CustomersFilter extends ApiFilter{
     protected $safeParams = [
-        'name' => ['eq'],
+        'name' => ['eq'],  
         'type' => ['eq'],
         'email' => ['eq'],
         'city' => ['eq'],
@@ -28,5 +28,26 @@ class CustomersFilter  extends ApiFilter{
         'gte' => '>='
     ];
 
-    
+    public function transform(Request $request) {
+        $eloQuery = [];
+
+        foreach ($this->allowedParams as $param => $operators) {
+            $query = $request->query($param);
+
+            if (!isset($query)) {
+                continue;
+            }
+
+            $column = $this->columnMap[$param] ?? $param;
+
+            foreach ($operators as $operator) {
+                if (isset($query[$operator])) {
+                    $eloQuery[] = [$column, $this->operatorMap[$operator], $query[$operator]];
+                }
+            }
+        }
+
+        return $eloQuery;
+    }
+
 }
