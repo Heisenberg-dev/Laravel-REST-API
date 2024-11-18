@@ -11,16 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('customers', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->string('type');
-            $table->string('email');
-            $table->string('address');
-            $table->string('city');
-            $table->string('state');
+        Schema::table('customers', function (Blueprint $table) {
             $table->string('postal_code')->default('')->change();
-            $table->timestamps();
         });
     }
 
@@ -29,6 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('customers');
+        Schema::table('customers', function (Blueprint $table) {
+            $table->string('postal_code')->change(); 
+        });
     }
 };

@@ -13,10 +13,13 @@ class Customer extends Model
         'name',  
         'type',
         'email',
+        'address',
         'city',
         'state',
-        'postalCode',
+        'postal_code',
     ];
+
+    
 
     public function invoices(){
         return $this->hasMany(Invoice::class);
